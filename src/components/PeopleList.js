@@ -24,23 +24,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function PeopleList({ socket }) {
+export default function PeopleList({ socket, users, setUsers, onPing }) {
   const classes = useStyles();
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    console.log(socket.id);
-    socket.emit('getUsers', { id: socket.id });
-  }, []);
-
-  socket.on('users', data => {
-    setUsers(data);
-  });
-  socket.on('disconnected', data => {
-    setUsers(data);
-  });
-
-  console.log('state', users);
+  console.log(users);
 
   return (
     <div className={classes.root}>
@@ -60,7 +46,11 @@ export default function PeopleList({ socket }) {
                   <Avatar alt={user.name} src='/static/images/avatar/1.jpg' />
                 </ListItemAvatar>
                 <ListItemText primary={user.name} />
-                <Button variant='contained' color='secondary'>
+                <Button
+                  onClick={() => onPing(user)}
+                  variant='contained'
+                  color='secondary'
+                >
                   Ping
                 </Button>
               </ListItem>

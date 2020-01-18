@@ -5,6 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Badge from '@material-ui/core/Badge';
 import Menu from '@material-ui/core/Menu';
@@ -22,28 +23,33 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function ButtonAppBar({ socket }) {
+export default function ButtonAppBar({
+  notifications,
+  badge,
+  setBadge,
+  logout
+}) {
   const classes = useStyles();
   const [showMenu, setShowMenu] = useState(null);
-  const [badge, setBadge] = useState(0);
-  const [notifications, setNotifications] = useState([]);
 
   const onNotificationClick = e => {
     setShowMenu(e.currentTarget);
     setBadge(0);
   };
 
-  socket.on('UserAdded', data => {
-    setBadge(badge + 1);
-    let newNotifications = [...notifications];
-    newNotifications.push(`${data.name} joined!`);
-    setNotifications(newNotifications);
-  });
-
   return (
     <div className={classes.root}>
       <AppBar position='static'>
         <Toolbar>
+          <IconButton
+            id='simple-menu'
+            aria-haspopup='true'
+            aria-label='show 11 new notifications'
+            color='inherit'
+            onClick={logout}
+          >
+            <ExitToAppIcon />
+          </IconButton>
           <Typography variant='h6' className={classes.title}>
             Welcome Chicos
           </Typography>
