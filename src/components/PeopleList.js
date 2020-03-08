@@ -28,7 +28,7 @@ export default function PeopleList({ socket, user, setUsers, onPing }) {
   useEffect(() => {
     const getMessages = async () => {
       const res = await axios.get(`${apiUrl}/messages`);
-      setMessages(GiftedChat.append([], res.data.messages));
+      setMessages(GiftedChat.append([], res.data.messages.reverse()));
     };
 
     getMessages();
