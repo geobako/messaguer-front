@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Home from './views/Home';
 import Login from './views/Login';
+import { apiUrl } from './utils';
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:5001', {
+const socket = io(apiUrl, {
   reconnection: true,
   reconnectionDelay: 1000,
   reconnectionDelayMax: 5000,
