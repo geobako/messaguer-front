@@ -1,4 +1,5 @@
-export const apiUrl = 'http://localhost:5001';
+// export const apiUrl = 'http://localhost:5001';
+export const apiUrl = 'https://messaguer-back.herokuapp.com/';
 
 export const images = {
   rick: require('./assets/rick.jpg'),
