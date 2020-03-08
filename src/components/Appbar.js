@@ -27,7 +27,8 @@ export default function ButtonAppBar({
   notifications,
   badge,
   setBadge,
-  logout
+  logout,
+  user
 }) {
   const classes = useStyles();
   const [showMenu, setShowMenu] = useState(null);
@@ -51,7 +52,7 @@ export default function ButtonAppBar({
             <ExitToAppIcon />
           </IconButton>
           <Typography variant='h6' className={classes.title}>
-            Welcome Chicos
+            Welcome {user.name}
           </Typography>
           <IconButton
             id='simple-menu'
